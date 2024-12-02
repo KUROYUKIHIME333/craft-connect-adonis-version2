@@ -27,21 +27,11 @@ export default class AuthController {
           message: 'User already exist',
         })
       } else {
-        const user = new User()
+        const user = User.create(datas)
 
-        user.fullName = datas.fullName
-        user.profilePicture = datas.profilePicture
-        user.email = datas.email
-        user.gender = datas.gender
-        user.birthdate = datas.birthdate
-        user.password = await argon2.hash(datas.password)
-        user.phoneNumber = datas.phoneNumber
-        user.mobileMoneyNumber = datas.mobileMoneyNumber
-        user.address = datas.address
-
-        user.save()
         return res.status(201).json({
           message: 'User creation : success',
+          user,
         })
       }
     } catch (error) {

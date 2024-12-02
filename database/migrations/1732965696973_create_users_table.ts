@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       table.date('birthdate').notNullable()
       table.string('password', 1000).notNullable()
       table.string('phone_number', 13).notNullable()
-      table.string('mobile_noney_number', 13).nullable()
+      table.string('mobile_money_number', 13).nullable()
       table.string('address').notNullable()
       table.string('status', 9).defaultTo('active')
       table.timestamp('created_at').notNullable()
