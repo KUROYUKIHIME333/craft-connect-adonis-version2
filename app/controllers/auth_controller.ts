@@ -23,7 +23,7 @@ export default class AuthController {
       const userVerified = await User.query().where('email', datas.email).first()
 
       if (userVerified) {
-        return res.status(201).json({
+        return res.json({
           message: 'User already exist',
         })
       } else {
@@ -40,15 +40,13 @@ export default class AuthController {
         user.address = datas.address
 
         user.save()
-
         return res.status(201).json({
           message: 'User creation : success',
         })
       }
     } catch (error) {
-      return res.status(201).json({
+      return res.json({
         message: 'An error has occured',
-        error: error.message,
       })
     }
   }
@@ -88,7 +86,9 @@ export default class AuthController {
         craftman.expirationDate = datas.expirationDate
         craftman.identityDocPics = datas.identityDocPics
 
-        return res.status(201).json({
+        console.log(craftman)
+
+        return res.json({
           message: 'Craftman creation : success',
         })
       }
@@ -98,5 +98,11 @@ export default class AuthController {
         error: error.message,
       })
     }
+  }
+
+  async tests({ response: res }: HttpContext) {
+    return res.json({
+      message: 'Test',
+    })
   }
 }
